@@ -25,12 +25,14 @@ public class TwitterConsumer {
     @KafkaListener(topics = "${app.kafka.twitter-topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(ConsumerRecord<String, String> consumerRecord){
         String tweetContent = consumerRecord.value();
-        writeToElasticSearch(tweetContent);
+        String indexId = consumerRecord.topic() + "_" + consumerRecord.partition() + "_" + consumerRecord.offset();
+        logger.info(indexId);
+        writeToElasticSearch(indexId, tweetContent);
     }
 
-    private void writeToElasticSearch(String tweetContent) {
+    private void writeToElasticSearch(String indexId, String tweetContent) {
         RestHighLevelClient restHighLevelClient = elasticSearchConfig.createClient();
-        IndexRequest indexRequest = new IndexRequest("twitter", "tweets").source(tweetContent, XContentType.JSON);
+        IndexRequest indexRequest = new IndexRequest("twitter", "tweets", indexId).source(tweetContent, XContentType.JSON);
         Logger logger = LoggerFactory.getLogger(TwitterConsumer.class);
 
         try {
