@@ -1,0 +1,38 @@
+spring:
+  kafka:
+    producer:
+      properties:
+        enable.idempotence: true
+        linger.ms: 3
+        max.block.ms: 40000
+        max.in.flight.requests.per.connection: 5
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      bootstrap-servers: localhost:9092
+      acks: all
+      compression-type: snappy
+      retries: 5
+      batch-size: 16384
+      buffer-memory: 33554432
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: helloworld-consumer-group
+      bootstrap-servers: localhost:9092
+
+app:
+  kafka:
+    topic: myTopic
+    twitter-topic: twitterTweets
+  twitter-creds:
+    consumer-key: "DfLyu4uFIft0xUzAc8iMuE8vC"
+    consumer-secret: "pBmiOfUqGDE0KARj1V78QLBLqSE0hp1CYKpzMflsaNvq83AzcJ"
+    access-token: "2938990370-fAjCVsFfZWZ6nmfSgdM7o8qt3WwrfGpVw8cFXqf"
+    access-token-secret:  "MHn7i7JxV06YEPsWwtEW9VxpaIyJsMiuFxtxbhbTANduK"
+  elasticSearch:
+    host: kafka-elastic-consum-9595472482.us-east-1.bonsaisearch.net
+    port: 443
+    scheme: https
+    user: 9bzyyl7qk4
+    password: 5840c5axwv
+
