@@ -1,7 +1,7 @@
 package com.kafka.project.KafkaWorld.twitter;
 
 import com.kafka.project.KafkaWorld.config.ElasticSearchConfig;
-import com.kafka.project.KafkaWorld.kafka.Consumer;
+import com.kafka.project.KafkaWorld.basicKafka.Consumer;
 import lombok.Data;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.elasticsearch.action.index.IndexRequest;

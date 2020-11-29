@@ -1,4 +1,4 @@
-package com.kafka.project.KafkaWorld.kafka;
+package com.kafka.project.KafkaWorld.basicKafka;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
