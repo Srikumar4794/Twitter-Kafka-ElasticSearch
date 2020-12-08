@@ -32,7 +32,7 @@ public class TwitterConsumer {
 
     private void writeToElasticSearch(String indexId, String tweetContent) {
         RestHighLevelClient restHighLevelClient = elasticSearchConfig.createClient();
-        IndexRequest indexRequest = new IndexRequest("twitter", "tweets", indexId).source(tweetContent, XContentType.JSON);
+        IndexRequest indexRequest = new IndexRequest("twitter_2", "tweets", indexId).source(tweetContent, XContentType.JSON);
         Logger logger = LoggerFactory.getLogger(TwitterConsumer.class);
 
         try {
